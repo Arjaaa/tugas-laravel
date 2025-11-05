@@ -34,6 +34,6 @@ class AdminStudentController extends Controller
 
         Student::create($validated);
 
-        return redirect()->route('admin.student')->with('success', 'Student berhasil ditambahkan!');
+        return redirect()->route('admin.student.index')->with('success', 'Student berhasil ditambahkan!');
     }
 }

@@ -41,7 +41,7 @@ Route::get('/', function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard admin
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'adminDashboard'])->name('dashboard');
 
     // Profil admin
     Route::get('/profil', [AdminProfilController::class, 'index'])->name('profil');
