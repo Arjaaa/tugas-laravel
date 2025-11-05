@@ -24,7 +24,7 @@ class AdminTeacherController extends Controller
         $request->validate([
             'name' => 'required',
             'subject_name' => 'required',
-            'subject_description' => 'nullable',
+            'subject_description' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
