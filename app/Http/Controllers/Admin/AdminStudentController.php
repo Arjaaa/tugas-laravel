@@ -9,20 +9,18 @@ use App\Models\Classroom;
 
 class AdminStudentController extends Controller
 {
-    // Menampilkan daftar student + modal tambah
     public function index()
     {
-        $students = Student::with('classroom')->get();
+        $students = Student::with('classroom')->paginate(5);
         $classrooms = Classroom::all();
 
-        return view('components.admin.student', [
+        return view('admin.students.student', [
             'title' => 'Data Students',
             'students' => $students,
             'classrooms' => $classrooms
         ]);
     }
 
-    // Simpan data student baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -35,5 +33,26 @@ class AdminStudentController extends Controller
         Student::create($validated);
 
         return redirect()->route('admin.student.index')->with('success', 'Student berhasil ditambahkan!');
+    }
+
+    public function update(Request $request, Student $student)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:students,email,' . $student->id,
+            'address' => 'required|string',
+            'classroom_id' => 'required|exists:classrooms,id',
+        ]);
+
+        $student->update($validated);
+
+        return redirect()->route('admin.student.index')->with('success', 'Student berhasil diperbarui!');
+    }
+
+    public function destroy(Student $student)
+    {
+        $student->delete();
+
+        return redirect()->route('admin.student.index')->with('success', 'Student berhasil dihapus!');
     }
 }

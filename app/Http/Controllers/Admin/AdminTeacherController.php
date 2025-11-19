@@ -12,10 +12,12 @@ class AdminTeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::with('subject')->get();
+        $subjects = Subject::all();
 
-        return view('components.admin.teacher', [
+        return view('Admin.teacher.teacher', [
             'title' => 'Teacher List',
-            'teacher' => $teachers
+            'teachers' => $teachers,
+            'subjects' => $subjects
         ]);
     }
 
@@ -25,29 +27,56 @@ class AdminTeacherController extends Controller
             'name' => 'required',
             'subject_name' => 'required',
             'subject_description' => 'required',
-            'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
         ]);
 
-        // 1️⃣ Buat subject dulu
+        // Buat subject baru
         $subject = Subject::create([
             'name' => $request->subject_name,
-            'description' => $request->subject_description ?? 'Belum ada deskripsi',
+            'description' => $request->subject_description,
         ]);
 
-        // 2️⃣ Buat teacher dan isi subject_id dari subject yang baru dibuat
-        $teacher = Teacher::create([
+        // Buat teacher
+        Teacher::create([
             'name' => $request->name,
-            'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
             'subject_id' => $subject->id,
         ]);
 
-        // ✅ Tidak perlu buat Subject kedua atau pakai save()
-        // Relasi sudah otomatis terhubung lewat subject_id
-
         return redirect()->back()->with('success', 'Teacher dan Subject berhasil ditambahkan!');
+    }
+
+    public function update(Request $request, Teacher $teacher)
+    {
+        $request->validate([
+            'name' => 'required',
+            'subject_name' => 'required',
+            'subject_description' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+
+        // Update teacher
+        $teacher->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+
+        // Update subject yang terkait
+        $teacher->subject->update([
+            'name' => $request->subject_name,
+            'description' => $request->subject_description,
+        ]);
+
+        return redirect()->back()->with('success', 'Teacher & Subject berhasil diperbarui!');
+    }
+
+    public function destroy(Teacher $teacher)
+    {
+        $teacher->delete();
+        return redirect()->back()->with('success', 'Teacher berhasil dihapus!');
     }
 }

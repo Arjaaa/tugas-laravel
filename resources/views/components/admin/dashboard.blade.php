@@ -17,25 +17,25 @@
             <div
                 class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center">
                 <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Total Students</h2>
-                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">128</p>
+                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">20</p>
             </div>
 
             <div
                 class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center">
                 <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Total Teachers</h2>
-                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">25</p>
+                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">5</p>
             </div>
 
             <div
                 class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center">
                 <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Subjects</h2>
-                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">10</p>
+                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">5</p>
             </div>
 
             <div
                 class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700 text-center">
                 <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Classrooms</h2>
-                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">8</p>
+                <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mt-2">4</p>
             </div>
         </div>
 
