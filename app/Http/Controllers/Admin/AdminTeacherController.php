@@ -76,6 +76,10 @@ class AdminTeacherController extends Controller
 
     public function destroy(Teacher $teacher)
     {
+            if ($teacher->subject) {
+        $teacher->subject->delete();
+    }
+
         $teacher->delete();
         return redirect()->back()->with('success', 'Teacher berhasil dihapus!');
     }

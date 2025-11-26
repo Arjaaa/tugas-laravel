@@ -372,15 +372,15 @@
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                         <span class="sr-only">Open user menu</span>
                         <img class="w-8 h-8 rounded-full"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+                            src="https://i.pinimg.com/736x/8b/34/43/8b34434b8dcb2704755b6ccb12dd9fed.jpg"
                             alt="user photo" />
                     </button>
                     <!-- Dropdown menu -->
                     <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
                         id="dropdown">
                         <div class="py-3 px-4">
-                            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
-                            <span class="block text-sm text-gray-900 truncate dark:text-white">name@flowbite.com</span>
+                            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Arza Armandhito</span>
+                            <span class="block text-sm text-gray-900 truncate dark:text-white">dhitoarza@gmail.com</span>
                         </div>
                         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                             <li>
