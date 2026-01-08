@@ -9,17 +9,29 @@ use Illuminate\Http\Request;
 
 class AdminTeacherController extends Controller
 {
-    public function index()
-    {
-        $teachers = Teacher::with('subject')->get();
-        $subjects = Subject::all();
+   public function index(Request $request)
+{
+    $search = $request->search;
 
-        return view('Admin.teacher.teacher', [
-            'title' => 'Teacher List',
-            'teachers' => $teachers,
-            'subjects' => $subjects
-        ]);
-    }
+    $teachers = Teacher::with('subject')
+        ->when($search, function ($query) use ($search) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('phone', 'like', "%{$search}%")
+                  ->orWhere('address', 'like', "%{$search}%")
+                  ->orWhereHas('subject', function ($q) use ($search) {
+                      $q->where('name', 'like', "%{$search}%");
+                  });
+        })
+        ->get();
+
+    $subjects = Subject::all();
+
+    return view('Admin.teacher.teacher', [
+        'title' => 'Teacher List',
+        'teachers' => $teachers,
+        'subjects' => $subjects
+    ]);
+}
 
     public function store(Request $request)
     {

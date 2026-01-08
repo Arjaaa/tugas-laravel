@@ -11,8 +11,8 @@ class AdminContactController extends Controller
     {
         return view('components.admin.kontak', [
             'title' => 'Kontak Admin',
-            'email' => 'dhitoarza@gmail.com',
-            'instagram' => '@arjaaaw',
+            'email' => 'bahlilethanol@gmail.com',
+            'instagram' => '@bahlil',
             'whatsapp' => '+62 812-3456-7890'
         ]);
     }

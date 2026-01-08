@@ -9,18 +9,30 @@ use App\Models\Classroom;
 
 class AdminStudentController extends Controller
 {
-    public function index()
-    {
-        $students = Student::with('classroom')->paginate(5);
-        $classrooms = Classroom::all();
+public function index(Request $request)
+{
+    $search = $request->search;
 
-        return view('admin.students.student', [
-            'title' => 'Data Students',
-            'students' => $students,
-            'classrooms' => $classrooms
-        ]);
-    }
+    $students = Student::with('classroom')
+        ->when($search, function ($query) use ($search) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('address', 'like', "%{$search}%")
+                  ->orWhereHas('classroom', function ($q) use ($search) {
+                      $q->where('name', 'like', "%{$search}%");
+                  });
+        })
+        ->paginate(5)
+        ->withQueryString();
 
+    $classrooms = Classroom::all();
+
+    return view('admin.students.student', [
+        'title' => 'Data Students',
+        'students' => $students,
+        'classrooms' => $classrooms
+    ]);
+}
     public function store(Request $request)
     {
         $validated = $request->validate([
